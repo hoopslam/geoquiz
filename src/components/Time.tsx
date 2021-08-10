@@ -1,20 +1,9 @@
-import { useState } from "react";
+import { useAppStore } from "../store/store";
 
 const Time = () => {
-  const [time, setTime] = useState(0);
-  const [timerId, setTimerId] = useState<number>();
+  const { time } = useAppStore();
 
-  const startTimer = () => {
-    let timer = window.setInterval(() => {
-      setTime((prev) => prev + 1);
-    }, 1000);
-    setTimerId(timer);
-  };
-
-  const stopTimer = () => {
-    clearInterval(timerId);
-  };
-  return <div></div>;
+  return <p>Time: {time}s</p>;
 };
 
 export default Time;

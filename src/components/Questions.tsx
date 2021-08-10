@@ -1,16 +1,15 @@
-import { AnswerObject, QuestionsProps } from "../types/types";
 import { Card } from "../styles/Questions.style";
+import { useAppStore } from "../store/store";
 
-const Questions: React.FC<QuestionsProps> = ({
-  question,
-  answers,
-  checkAnswer,
-  userAnswer,
-  questionNumber,
-}) => {
+const Questions: React.FC = () => {
+  const { questionNumber, questions, userAnswers, checkAnswer} = useAppStore();
+  const question = questions[questionNumber].question;
+  const answers= questions[questionNumber].answers;
+  const userAnswer = userAnswers ? userAnswers[questionNumber] : undefined;
+
   return (
     <Card>
-      <p className="number">Question: {questionNumber} / 10</p>
+      <p className="number">Question: {questionNumber + 1} / 10</p>
       <p>{question}</p>
       {answers.map((answer) => (
         <button

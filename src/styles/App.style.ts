@@ -35,14 +35,4 @@ export const AppStyles = styled.div`
   .start-button {
 
   }
-
-  .attribution {
-      p {
-          font-size: .9rem;
-          margin: 10px;
-      }
-      a:visited, a:link {
-          color: grey;
-      }      
-  }
 `;

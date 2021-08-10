@@ -2,20 +2,13 @@ import Questions from "./components/Questions";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { AppStyles } from "./styles/App.style";
 import { useAppStore } from "./store/store";
+import Time from "./components/Time";
+import Score from "./components/Score";
+import Footer from "./components/Footer";
+import DifficultySelector from "./components/DifficultySelector";
 
 function App() {
-  const {
-    gameOver,
-    loading,
-    questionNumber,
-    time,
-    score,
-    questions,
-    userAnswers,
-    startQuiz,
-    checkAnswer,
-    selectDifficulty,
-  } = useAppStore();
+  const { gameOver, loading, questionNumber, startQuiz } = useAppStore();
 
   return (
     <>
@@ -25,53 +18,23 @@ function App() {
 
         {gameOver && (
           <div className="start-options">
-            <div>
-              <label htmlFor="difficulty">Choose difficulty: </label>
-              <select
-                name="difficulty"
-                id="difficulty"
-                onChange={selectDifficulty}
-              >
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-            </div>
-
+            <DifficultySelector />
             <button className="start-button" onClick={startQuiz}>
               Start New Quiz
             </button>
           </div>
         )}
-
         {loading && <p>Loading Quiz...</p>}
         {!loading && !gameOver && questionNumber < 10 && (
           <div className="card-container">
             <div className="score">
-              <p>Time: {time}s</p>
-              <p>Score: {score}</p>
+              <Time />
+              <Score />
             </div>
-            <Questions
-              questionNumber={questionNumber + 1}
-              question={questions[questionNumber].question}
-              answers={questions[questionNumber].answers}
-              userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
-              checkAnswer={checkAnswer}
-            />
+            <Questions />
           </div>
         )}
-        <footer>
-          <div className="attribution">
-            <p>
-              Website made by <a href="https://devcho.com">David Cho</a>{" "}
-              &copy;2021
-            </p>
-            <p>
-              Background photo by{" "}
-              <a href="https://unsplash.com/@nsx_2000">Krzysztof Hepner</a>
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </AppStyles>
     </>
   );
