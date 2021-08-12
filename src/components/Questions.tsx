@@ -10,7 +10,8 @@ const Questions: React.FC = () => {
   return (
     <Card>
       <p className="number">Question: {questionNumber + 1} / 10</p>
-      <p>{question}</p>
+      <p dangerouslySetInnerHTML={{__html: question}}/>
+      {console.log("questions")}
       {answers.map((answer) => (
         <button
           key={answer}
@@ -18,8 +19,7 @@ const Questions: React.FC = () => {
           value={answer}
           onClick={checkAnswer}
         >
-          <span>{answer}</span>
-          {console.log(question)}
+          <span dangerouslySetInnerHTML={{__html: answer}} />
         </button>
       ))}
     </Card>
