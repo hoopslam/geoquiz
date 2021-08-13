@@ -11,7 +11,6 @@ const Questions: React.FC = () => {
     <Card>
       <p className="number">Question: {questionNumber + 1} / 10</p>
       <p dangerouslySetInnerHTML={{__html: question}}/>
-      {console.log("questions")}
       {answers.map((answer) => (
         <button
           key={answer}

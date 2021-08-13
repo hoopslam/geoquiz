@@ -5,11 +5,11 @@ const Time = () => {
   const { addTime } = useAppStore();
   const [time, setTime] = useState<number>(0);
 
-  const addSecond = (): void => {
-    setTime((prev) => prev + 1);
-  };
+  useEffect(() => {  
+    const addSecond = (): void => {
+      setTime((prev) => prev + 1);
+    };
 
-  useEffect(() => {
     //setInterval Id to stop interval
     let id = window.setInterval(() => {
       addSecond();
@@ -17,10 +17,13 @@ const Time = () => {
 
     //Cleanup function to stop interval on unmount
     return () => {
-      addTime(time);
       clearInterval(id);
     };
   }, []);
+
+  useEffect(() => {
+    addTime(time)
+  }, [time])
   return <p>Time: {time}s</p>;
 };
 

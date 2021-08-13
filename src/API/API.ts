@@ -14,7 +14,8 @@ export interface QuestionTypes extends FetchedData {  //shuffled data
 }
 
 export const fetchQuizQuestions = async (difficulty: string):Promise<QuestionTypes[]> => {
-  const endpoint = `https://opentdb.com/api.php?amount=10&category=22&difficulty=${difficulty}&type=multiple`;
+  try {
+const endpoint = `https://opentdb.com/api.php?amount=10&category=22&difficulty=${difficulty}&type=multiple`;
   const response = await fetch(endpoint);
   const data = await response.json();
 
@@ -26,4 +27,9 @@ export const fetchQuizQuestions = async (difficulty: string):Promise<QuestionTyp
       question.correct_answer,
     ]),
   }));
+  } catch (err) {
+    console.log(err)
+    return [];
+  }
+  
 };

@@ -16,6 +16,7 @@ export interface AppStore {
 
   startQuiz: () => void;
   addTime: (time: number) => void;
+  resetScore: () => void;
   checkAnswer: (e: React.MouseEvent<HTMLButtonElement>) => void;
   selectDifficulty: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -34,17 +35,16 @@ const appStore: AppStore = observable.object({
   async startQuiz() {
     appStore.loading = true;
     appStore.gameOver = false;
-    try {
-      const fetchedData = await fetchQuizQuestions(appStore.difficulty);
-      appStore.questions = [...appStore.questions, ...fetchedData];
-      appStore.score = 0;
-      appStore.time = 0;
-      appStore.userAnswers = [];
-      appStore.questionNumber = 0;
-      appStore.loading = false;
-    } catch (err) {
-      console.log(err);
-    }
+    const fetchedData = await fetchQuizQuestions(appStore.difficulty);
+    appStore.questions = [...fetchedData];
+    appStore.resetScore();
+  },
+  resetScore() {
+    appStore.score = 0;
+    appStore.time = 0;
+    appStore.userAnswers = [];
+    appStore.questionNumber = 0;
+    appStore.loading = false;
   },
   addTime(time) {
     appStore.time = time;
