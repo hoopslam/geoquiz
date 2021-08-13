@@ -35,16 +35,16 @@ const appStore: AppStore = observable.object({
     appStore.loading = true;
     appStore.gameOver = false;
     try {
-      const shuffledData = await fetchQuizQuestions(appStore.difficulty);
-      appStore.questions = [...appStore.questions, ...shuffledData];
+      const fetchedData = await fetchQuizQuestions(appStore.difficulty);
+      appStore.questions = [...appStore.questions, ...fetchedData];
+      appStore.score = 0;
+      appStore.time = 0;
+      appStore.userAnswers = [];
+      appStore.questionNumber = 0;
+      appStore.loading = false;
     } catch (err) {
       console.log(err);
-    }   
-    appStore.score = 0;
-    appStore.time = 0;
-    appStore.userAnswers = [];
-    appStore.questionNumber = 0;
-    appStore.loading = false;
+    }
   },
   addTime(time) {
     appStore.time = time;
