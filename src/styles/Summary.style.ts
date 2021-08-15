@@ -9,6 +9,16 @@ export const SummaryWrapper = styled.div`
         border-radius: 10px;
         margin: 10px 0;
         padding: 10px;
+
+        p {
+            margin: 5px;
+        }
+    }
+
+    .answers {
+        display: flex;
+        justify-content: space-between;
+
     }
 
     .correct {
@@ -16,5 +26,14 @@ export const SummaryWrapper = styled.div`
     }
     .incorrect {
         background-color: rgba(180, 0,0,.7);
+    }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+
+        @media screen and (max-width: 767px) {
+            display: block;
+        }
     }
 `

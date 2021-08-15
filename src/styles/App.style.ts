@@ -33,6 +33,21 @@ export const AppStyles = styled.div`
   }
 
   .start-button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(80,80,256);
+    color: white;
+  }
 
+  .score {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      
+      p {
+        font-size: 1.5rem;  
+      }
+      
   }
 `;
