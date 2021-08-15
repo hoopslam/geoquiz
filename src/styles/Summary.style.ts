@@ -34,6 +34,7 @@ export const SummaryWrapper = styled.div`
 
         @media screen and (max-width: 767px) {
             display: block;
+            font-size: .8rem;
         }
     }
 `
